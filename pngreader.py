@@ -29,6 +29,7 @@ def readFile(r):
     readerObj = r.read()
     arrayObjList = list(readerObj[2])
     allValues = ""
+    palDict = {}
     for i in range(0,len(arrayObjList)):
         arrayObj = arrayObjList[i]
         rowRGBValues = arrayObj.tolist()
@@ -40,8 +41,14 @@ def readFile(r):
             b = toHex(rowRGBValues[j+2])
             a = toHex(rowRGBValues[j+3])
             # string = r + " " + g + " " + b + " " + a + "\n"
-            string = r + g + b + a + "\n"
+            # string = r + g + b + a + "\n"
+            string = r + g + b + a
+            if string in palDict:
+                palDict[string] = palDict[string] + 1
+            else:
+                palDict[string] = 1
             allValues = allValues + string
+    print(palDict)
     return allValues
 
 
