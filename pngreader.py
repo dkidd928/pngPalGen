@@ -13,7 +13,10 @@ def main():
             outputFile = sys.argv[2]
         outF = open(outputFile, 'w')
         values = readFile(r)
-        outF.write(values)
+
+        for i in values:
+            value = i + "\t" + str(values[i]) + "\n"
+            outF.write(value)
     else:
         print("Too many arguments")
 
@@ -42,14 +45,14 @@ def readFile(r):
             a = toHex(rowRGBValues[j+3])
             # string = r + " " + g + " " + b + " " + a + "\n"
             # string = r + g + b + a + "\n"
-            string = r + g + b + a
+            # string = r + g + b + a
+            string = r + g + b
             if string in palDict:
                 palDict[string] = palDict[string] + 1
             else:
                 palDict[string] = 1
             allValues = allValues + string
-    print(palDict)
-    return allValues
+    return palDict
 
 
 main()
